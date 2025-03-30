@@ -1,4 +1,4 @@
-
+// localStorage.clear()
 const employees = [
     {
         "id": 1,
@@ -47,7 +47,7 @@ const employees = [
     {
         "id": 2,
         "firstName": "Sneha",
-        "email": "employee2@example.com",
+        "email": "sneha@e.com",
         "password": "123",
         "taskCounts": {
             "active": 1,
@@ -209,24 +209,14 @@ const admin = [{
     "password": "123"
 }];
 
-// Save data to localStorage
-export const setLocalStorage = (key, data) => {
-    try {
-      localStorage.setItem(key, JSON.stringify(data));
-    } catch (error) {
-      console.error("Error saving to localStorage:", error);
-    }
-  };
+export const setLocalStorage = ()=>{
+    localStorage.setItem('employees',JSON.stringify(employees))
+    localStorage.setItem('admin',JSON.stringify(admin))
+}
+export const getLocalStorage = ()=>{
+    const employees = JSON.parse(localStorage.getItem('employees'))
+    const admin = JSON.parse(localStorage.getItem('admin'))
 
-// Get data from localStorage
-export const getLocalStorage = () => {
-  try {
-    const employees = JSON.parse(localStorage.getItem("employees")) || [];
-    const admin = JSON.parse(localStorage.getItem("admin")) || [];
-    return { employees, admin }; // Return an object
-  } catch (error) {
-    console.error("Error reading from localStorage:", error);
-    return { employees: [], admin: [] }; // Return default values
-  }
-};
+    return {employees,admin}
+}
 
